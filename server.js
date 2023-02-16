@@ -9,7 +9,7 @@ const errorHandler = require('./middleware/errorHandler');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const AAdb = require('./config/AAconn')
-const PORT = process.env.PORT || 3500;
+const PORT = process.env.PORT || 9000;
 
 AAdb();
 
