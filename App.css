@@ -27,7 +27,7 @@
   margin-top: 2%;
 }
 
-.CalendarWrapper {
+.CalendarWrapper, .LeftWrapper {
   flex: 1;
   text-align: left;
   margin-left: 1%
@@ -38,7 +38,7 @@
   text-align: center;
 }
 
-.HelpWrapper {
+.HelpWrapper, .RightWrapper {
   flex: 1;
   text-align: right;
   margin-right: 1%;
@@ -118,7 +118,7 @@ label {
 }
 
 button {
-  border: none;
+  border: 0px solid black;
   margin: 1rem 0;
   padding: 0.5rem;
   padding-left: 2rem;
@@ -131,6 +131,7 @@ button {
   background: none;
   text-decoration: underline;
   margin: 0;
+  cursor: pointer;
 }
 
 h1 {
