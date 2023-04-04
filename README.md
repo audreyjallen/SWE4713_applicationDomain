@@ -1,1 +1,0 @@
-# SWE4713_applicationDomain
