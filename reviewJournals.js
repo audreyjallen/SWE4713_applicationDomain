@@ -10,10 +10,11 @@ import Grid from '@mui/material/Grid';
 import { Bar } from './appBar'
 import { Button } from '@mui/material';
 import UploadIcon from '@mui/icons-material/Upload';
+import { Reject } from './rejectJournalDialogue';
 
 //Page for adding new journal entries
 
-export const AddJournal = () => {
+export const ReviewJournal = () => {
 
     //Form variables
 
@@ -27,27 +28,7 @@ export const AddJournal = () => {
     const [debit2, setDebit2] = useState()
     const [credit2, setCredit2] = useState()
 
-    const handleSubmit = () => {
-        //preventDefault();
-
-        //Add firebase BS here
-    }
-
-    const handleReset = () => {
-
-        setAccountName("")
-        setDescription("")
-        setDebit("")
-        setCredit("")
-
-        setAccountName2("")
-        setDescription2("")
-        setDebit2("")
-        setCredit2("")
-
-
-    }
-
+    
     return (
         <div className = "app-layout">
             <Bar/>
@@ -185,44 +166,19 @@ export const AddJournal = () => {
 
             <div className = "ContentNavBar"> 
 
-                <div className = "LeftWrapper">
-
-                    <Button
-                    startIcon = {<UploadIcon/>}
-                    style = {{backgroundColor: "#f7bf4f", color: "#000000"}}        //Submit/upload/reset/cancel options
-                    variant = "contained" 
-                    component = "label"
-                    disableElevation
-                    >Upload file
-                        <input hidden multiple type = "file"></input>
-                    </Button>
-                </div>
                 <div className = "MidNav">
 
-                        <Button 
-                        style = {{backgroundColor: "#f7bf4f", color: "#000000"}}
-                        variant = "contained"
-                        disableElevation
-                        type = "reset"
-                        onClick = {handleReset}
-                        >Reset
-                        </Button>
-
-                        <Button
-                        style = {{backgroundColor: "#f7bf4f", color: "#000000"}}
-                        variant = "contained"
-                        disableElevation
-                        >Cancel
-                        </Button>
+                    <Reject/>
 
                 </div>
                 <div className = "RightWrapper">
+                    
                     <Button
                     style = {{backgroundColor: "#f7bf4f", color: "#000000"}}
                     disableElevation
                     type = "submit"
-                    onClick = {handleSubmit}
-                    >Submit
+                    //onClick = {handleSubmit}
+                    >APPROVE
                     </Button>
                 </div>
             </div>

@@ -5,6 +5,9 @@ import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export const Bar = () => {
+
+    const user = "Audrey";  //user's first name should be pulled from database
+
     return (
         <div>
             <AppBar
@@ -20,7 +23,7 @@ export const Bar = () => {
                     sx = {{marginLeft: "auto"}}
                     >
                     </AccountCircleIcon>
-                    <h4>Welcome back, Admin</h4>
+                    <h4>Welcome back, {user}</h4>
                     <Button
                     sx = {{marginLeft: "10px"}}
                     style = {{backgroundColor: '#ffffff', color: '#494646'}}
