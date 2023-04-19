@@ -28,7 +28,7 @@ import {
   import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate, Link } from 'react-router-dom'
 
-export const Ledger = () => {
+export const Journal1 = () => {
 
     const accounts = getAccounts();
     
@@ -69,16 +69,16 @@ export const Ledger = () => {
             align: 'right',
           },
         {
-            id: "postReference",
-            label: "Post Reference",
+            id: "User",
+            label: "User",
             minWidth: 150,
             align: "right",
             format: (value) => value.toLocaleString()
         }
       ];
       
-      function createData(date, accountname, accountnumber, description, debit, credit, balance, approval, postReference) {
-        return { date, accountname, accountnumber, description, debit, credit, balance, approval, postReference };
+      function createData(date, accountname, accountnumber, description, debit, credit, balance, approval, User) {
+        return { date, accountname, accountnumber, description, debit, credit, balance, approval, User };
       }
       
       const rows = [
@@ -93,52 +93,10 @@ export const Ledger = () => {
           <button className="link-btn" style={{ color: "red" }}>
             Denied
           </button>,
-          <div className = "link-btn">
-          <Link to ="/Journal1">
-              <button>
-                  Post Ref
-              </button>
-              </Link>
-          </div>,
+          "John Doe"
+          
         ),
-        createData(
-            "3/29/2023",
-            "Basic Liabilities Account",
-        "54321",
-          "Journal 2",
-          100,
-          0,
-          100,
-          <button className="link-btn" style={{ color: "orange" }}>
-            Pending
-          </button>,
-          <div className = "link-btn">
-          <Link to ="/Journal2">
-              <button>
-                  Post Ref
-              </button>
-              </Link>
-          </div>,
-        ),
-        createData(
-            "4/2/2023",
-            "Basic Liabilities & Assets Account",
-        "32154",
-            "Journal 3",
-            0,
-            50,
-            50,
-            <button className="link-btn" style={{ color: "green" }}>
-            Approved
-          </button>,
-          <div className = "link-btn">
-          <Link to ="/Journal3">
-              <button>
-                  Post Ref
-              </button>
-              </Link>
-          </div>,
-        ),
+        
       ];
 
       const [page, setPage] = React.useState(0);
@@ -175,52 +133,11 @@ export const Ledger = () => {
             </div>
 
             <div className = "Title">
-                {accounts.name} Ledger
+                {accounts.name} Journal 1
             </div>
             <Divider variant = "middle"></Divider>
 
-            <div className = "SubNavBar">
-                <div className = "link-wrapper">
-                    <Tooltip title = "Past edits">
-                    <button className = "link-btn">Change Record</button>
-                    </Tooltip>
-                    <Tooltip title = "New journal entry">
-                    <Link to ="/AddJournal">
-                    <button>
-                        <AddIcon fontSize='small'/>
-                    </button>
-                    </Link>
-                    </Tooltip>
-                </div>
-                <div className = "SearchFilterWrapper">
-                    
-                        <SearchIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                        <TextField label="Search accounts" type="search" size = "small"/>
-                        <InputLabel id="demo-select-small">Filter</InputLabel>
-                        <Select
-                        labelId="demo-select-small"
-                        size='small'
-                        name = "Filter"
-                        id="demo-select-small"
-                        //value={filter}
-                        label="Filter"
-                        alignItems = "right"
-                        sx = {{display: "auto", alignItems: "right"}}
-                        //onChange={handleChange}
-                    >
-                        <MenuItem value={"Account Name"}>Account Name</MenuItem>
-                        <MenuItem value={"Account Number"}>Account Number</MenuItem>
-                        <MenuItem value={"Date Ascending"}>Date Ascending</MenuItem>
-                        <MenuItem value={"Date Descending"}>Date Descending</MenuItem>
-                        <MenuItem value={"Balance LowHigh"}>Balance Low to High</MenuItem>
-                        <MenuItem value={"Balance HighLow"}>Balance High to Low</MenuItem>
-                        <MenuItem value={"Approval HighLow"}>Approval Accepted to Denied</MenuItem>
-                        <MenuItem value={"Approval LowHigh"}>Approval Denied to Accepted</MenuItem>
-                    </Select>
-                    
-                    </div>
-                    
-                </div>
+            
 
             <Paper sx={{ width: '100%', overflow: 'scroll'}} padding = {10}>
                 <TableContainer sx={{ maxHeight: 440 }}>

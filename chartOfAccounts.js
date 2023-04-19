@@ -16,10 +16,18 @@ import EditIcon from "@mui/icons-material/Edit";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Add from '@mui/icons-material/Add';
+import { useAuth } from '../context/UserAuthContext'
+import { useNavigate, Link } from 'react-router-dom'
+import { AddAccount } from './addAccount';
+import {firestore } from "../firebase";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+
 
 
 export const Dashboard = () => {
+  const navigate = useNavigate()
 
     const style = {
         position: "absolute",
@@ -32,8 +40,9 @@ export const Dashboard = () => {
         boxShadow: 24,
         p: 4,
       };
-    
+
       const accounts = getAccounts();
+      const charts = AddAccount();
 
     return (
         <div className = "app-layout">
@@ -46,9 +55,11 @@ export const Dashboard = () => {
                 </Tooltip>
                 <div className = "MidNav">
                     <Tooltip title = "Journalizing and ledger">
+                    <Link to ="/Ledger">
                     <button>
                         Journal
                     </button>
+                    </Link>
                     </Tooltip>
                 </div>
                 <div className = "HelpWrapper">
@@ -72,9 +83,11 @@ export const Dashboard = () => {
                     <button className = "link-btn">Change Record</button>
                     </Tooltip>
                     <Tooltip title = "Add new account">
+                    <Link to ="/AddAccount">
                     <button>
                         <AddIcon fontSize='small'/>
                     </button>
+                    </Link>
                     </Tooltip>
                 </div>
                 <div className = "SearchFilterWrapper">
@@ -97,8 +110,7 @@ export const Dashboard = () => {
                         <MenuItem value={"Account Number"}>Account Number</MenuItem>
                         <MenuItem value={"Category"}>Category</MenuItem>
                         <MenuItem value={"Subcategory"}>Subcategory</MenuItem>
-                        <MenuItem value={"Balance LowHigh"}>Balance Low to High</MenuItem>
-                        <MenuItem value={"Balance HighLow"}>Balance High to Low</MenuItem>
+                        
                     </Select>
                     
                 </div>
@@ -114,20 +126,26 @@ export const Dashboard = () => {
                 </div>
                 <div className = "AccountRight">
                 <Tooltip title = "View">
-                <IconButton>
-                  <VisibilityIcon className = "icon"/>
-                  </IconButton>
-                </Tooltip>
+                    <Link to ="/ViewAccount">
+                    <button>
+                        View
+                    </button>
+                    </Link>
+                    </Tooltip>
                 <Tooltip title = "Edit">
-                <IconButton>
-                  <EditIcon className = "icon"/>
-                </IconButton>
-                </Tooltip>
+                    <Link to ="/EditAccount">
+                    <button>
+                        Edit
+                    </button>
+                    </Link>
+                    </Tooltip>
                 <Tooltip title = "Delete">
-                <IconButton>
-                  <HighlightOffIcon className = "icon"/>
-                  </IconButton>
-                  </Tooltip>
+                    <Link to ="/Ledger">
+                    <button>
+                      Delete
+                    </button>
+                    </Link>
+                    </Tooltip>
                 </div>
               </div>
             );
