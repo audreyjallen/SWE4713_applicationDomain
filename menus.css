@@ -1,0 +1,28 @@
+button {
+    margin: 5px;
+    background-color: #f7bf4f;
+}
+
+.ContentNav {
+    width: 100%;
+    display: flex;
+    min-height: 5rem;
+    margin-top: 10px;
+}
+
+.CalendarButton {
+    flex: 1;
+    text-align: left;
+    margin-left: 1%
+}
+
+.MidButton {
+    flex: 1;
+    text-align: center;
+}
+
+.HelpButton {
+    flex: 1;
+    text-align: right;
+    margin-right: 1%;
+}
