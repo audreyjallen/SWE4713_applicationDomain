@@ -1,0 +1,24 @@
+.ratioBox {
+    justify-content: left;
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 2%;
+    margin-top: 30px;
+    margin-left: 30px;
+    background-color: whitesmoke;
+    padding: 1%;
+}
+
+.notifBox {
+    height: 200px;
+    width: 950px;
+    border: 1px solid black;
+    border-radius: 2%;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 30px;
+    background-color: whitesmoke;
+    padding: 1%;
+    overflow: scroll;
+}
