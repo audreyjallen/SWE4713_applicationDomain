@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { Send } from 'emailjs-com';
 import { send } from '@emailjs/browser';
+import { Bar } from './appBar';
+import Box from '@mui/material/Box';
 
 export const Contact = () => {
 
-    const [sender_name, set_sender_name] = useState('');
+    const [sender_name, set_sender_name] = useState('');        //Form variables
     const [sender_email, set_sender_email] = useState('');
     const [message, set_message] = useState('');
-    const handleName = (e) => {
+
+    const handleName = (e) => {                                 //Sets form variables once changed by user
         set_sender_name(e.target.value)
     }
     const handleEmail = (e) => {
@@ -16,7 +19,8 @@ export const Contact = () => {
     const handlemessage = (e) => {
         set_message(e.target.message)
     }
-    const sendMail = (e) => {
+
+    const sendMail = (e) => {                                   //Sends the email via emailjs
         e.preventDefault();
         send(
             'service_7hxu4sx',
@@ -33,15 +37,30 @@ export const Contact = () => {
             })
     }
     return (
-        <>
-            <h1>Contact Us</h1>
+        <div className = "App">
+            <Bar/>
+
+            <Box textAlign={'center'} sx = {{backgroundColor: 'whitesmoke', width: 'auto', padding: 2}}>
+
+            <h1>Email</h1>
             <form onSubmit={sendMail}>
-                <input type='text' name='sender_name' value={sender_name} onChange={handleName} required placeholder='your name' />
-                <input type='email' name='sender_email' value={sender_email} onChange={handleEmail} required placeholder='your email' />
-                <input type='message' value={message} onChange={handlemessage} required placeholder='your message' />
+                <div>
+                <input type='text' name='sender_name' value={sender_name} onChange={handleName} required placeholder='Your name' />
+                </div>
+                <div>
+                <input type='email' name='sender_email' value={sender_email} onChange={handleEmail} required placeholder='Your email' />
+                </div>
+                <div>
+                <input type='message' value={message} onChange={handlemessage} required placeholder='Your message' />
+                </div>
+                <div>
                 <button type='submit'>Send Mail</button>
+                </div>
             </form>
-        </>
+
+            </Box>
+
+        </div>
 
     )
 }
