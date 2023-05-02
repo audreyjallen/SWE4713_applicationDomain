@@ -35,7 +35,7 @@ export const ManagerLog = () => {
         }
         try {
           await UserLogin(email, password)
-          navigate("/ManagerDashboard")
+          navigate("/managerlandingPage")
         } catch (error) {
     
           if (error.code == "auth/user-not-found") {
