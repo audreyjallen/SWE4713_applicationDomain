@@ -35,7 +35,7 @@ export const Log = () => {
         }
         try {
           await UserLogin(email, password)
-          navigate("/Dashboard")
+          navigate("/landingPage")
         } catch (error) {
     
           if (error.code == "auth/user-not-found") {
