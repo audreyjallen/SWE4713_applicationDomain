@@ -13,6 +13,7 @@ import { getAccounts } from './accounts'
 import { HelpModal } from './helpModal'
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from '@mui/icons-material/Delete';
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
@@ -23,7 +24,7 @@ import {AddAccount} from './addAccount';
 import {firestore } from "../firebase";
 import { addDoc, collection, doc, setDoc, getDocs, deleteDoc } from "firebase/firestore";
 import { useState, useEffect} from 'react'
-import swal from 'sweetalert2';
+
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -36,7 +37,7 @@ import TableRow from '@mui/material/TableRow';
 
 
 export const Dashboard = () => {
-  const Swal = swal;
+ 
   const navigate = useNavigate()
   const charts = getAccounts();
   const {getAccount} = AddAccount()
@@ -64,27 +65,13 @@ export const Dashboard = () => {
   };
 
 
-  const deleteAccount = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "This account will be deleted forever!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3#ffcf33",
-      cancelButtonColor: "#cf2bbe",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.value) {
-        deleted(rows.id);
-      }
-    });
-  };
+ 
 
   const deleted = async  (id) => {
    coa.child(firestore, `Accounts/${id}`).remove((err)=>{
     if (err){
     }else{ //await deleteDoc(gone);
-      Swal.fire("This account has been deleted.");
+      
       getAccounts();  }
    });
   };
@@ -106,6 +93,28 @@ export const Dashboard = () => {
                         Journal
                     </button>
                     </Link>
+                    
+                    </Tooltip>
+                </div>
+                <div className = "AddManager">
+                    <Tooltip title = "AddManager">
+                    <Link to ="/createManager">
+                    <button>
+                        Add Manager
+                    </button>
+                    </Link>
+                    
+                    </Tooltip>
+                </div>
+
+                <div className = "AddAccountant">
+                    <Tooltip title = "AddAccountant">
+                    <Link to ="/createAccountant">
+                    <button>
+                        Add Accountant
+                    </button>
+                    </Link>
+                    
                     </Tooltip>
                 </div>
                 <div className = "HelpWrapper">
@@ -183,9 +192,8 @@ export const Dashboard = () => {
                 </IconButton>
                 </Tooltip>
                 <Tooltip title = "Delete" >
-                <IconButton onClick={() => {
-                                deleteAccount(rows.id);}}>
-                  <HighlightOffIcon className = "icon"/>
+                <IconButton onClick>
+                  <DeleteIcon className = "icon"/>
                   </IconButton>
                   </Tooltip>
                 </div>
