@@ -1,0 +1,7 @@
+.style-table{
+    border-collapse:collapse
+    margin: auto;
+    font: size 0.9em;
+    font-family: semi-serif;
+    max-width: 800px
+}

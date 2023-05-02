@@ -1,0 +1,9 @@
+.pickerContainer {
+    justify-content: center;    /* Aligns input boxes and buttons in the center of the screen */
+    align-items: center;
+    text-align: center;
+}
+
+p {
+    margin-left: 50px;          /* Adds left-hand margin to paragraph text */
+}
