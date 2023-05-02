@@ -1,7 +1,7 @@
-import { useContext, createContext, useEffect, useState } from "react"
-import { AuthErrorCodes, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, sendEmailVerification, signOut } from 'firebase/auth'
-import { auth, firestore } from "../firebase";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import React, { useContext, createContext, useEffect, useState } from "react"
+import { confirmPasswordRest, AuthErrorCodes, createUserWithEmailAndPassword, createManagerWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, sendEmailVerification, signOut, sendPasswordResetEmail, updateProfile, getAdditionalUserInfo } from 'firebase/auth';
+import { auth, firestore, authCreate, app } from "../firebase";
+import { addDoc, collection, doc, setDoc, getFirestore, getDocs} from "firebase/firestore";
 import { useNavigate, Link } from 'react-router-dom'
 
 
@@ -61,8 +61,88 @@ const UserAuthContext = ({ children }) => {
       }
     })
   }
+  const SingUpManager = async (firstName, lastName, password, email, address) => {
+    setError("");
+    createUserWithEmailAndPassword(auth, email, password).then(
+      async (result) => {
+        console.log(result)
+        try {
+          const docRef = await addDoc(collection(firestore, "Manager"), {
+          email, firstName, lastName, password, address,
+             userID: `${result.user.uid}`
+          });
+         // const ref = doc(firestore, "Admin", result.user.uid)
+          //const docRef = await setDoc(ref, { email, firstName, lastName, password, address })
+          //console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
+      }
+    ).catch(err => {
+      if (err.code === "auth/email-already-in-use") {
+        setInterval(() => {
+          setError("")
+        }, 5000)
+        setError("email already in use try another email")
+      }
+      else if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
+
+        setInterval(() => {
+          setError("")
+        }, 5000)
+        setError("Password Must be 6 charecter")
+      }
+
+      else {
+        setError(err.message)
+      }
+    })
+  }
+  const SignUpAccountant = async (firstName, lastName, password, email, address) => {
+    setError("");
+    createUserWithEmailAndPassword(auth, email, password).then(
+      async (result) => {
+        console.log(result)
+        try {
+          const docRef = await addDoc(collection(firestore, "Accountant"), {
+          email, firstName, lastName, password, address,
+             userID: `${result.user.uid}`
+          });
+         // const ref = doc(firestore, "Admin", result.user.uid)
+          //const docRef = await setDoc(ref, { email, firstName, lastName, password, address })
+          //console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
+      }
+    ).catch(err => {
+      if (err.code === "auth/email-already-in-use") {
+        setInterval(() => {
+          setError("")
+        }, 5000)
+        setError("email already in use try another email")
+      }
+      else if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
+
+        setInterval(() => {
+          setError("")
+        }, 5000)
+        setError("Password Must be 6 charecter")
+      }
+
+      else {
+        setError(err.message)
+      }
+    })
+  }
 
   const UserLogin = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password)
+  }
+  const ManagerLogin = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password)
+  }
+  const AccountantLogin = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password)
   }
 
@@ -75,10 +155,15 @@ const UserAuthContext = ({ children }) => {
     return signOut(auth)
   }
 
+  
 
   const value = {
     SignUp,
+    SingUpManager,
+    SignUpAccountant,
     UserLogin,
+    ManagerLogin,
+    AccountantLogin,
     error,
     currentuser,
     logout
