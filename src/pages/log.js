@@ -35,7 +35,7 @@ export const Log = () => {
         }
         try {
           await UserLogin(email, password)
-          navigate("/LandingPage")
+          navigate("/landingPage")
         } catch (error) {
     
           if (error.code == "auth/user-not-found") {
@@ -63,7 +63,7 @@ export const Log = () => {
     return (
         <div className = "auth-form-container">
             <h1><AccountTreeIcon htmlColor='#f7bf4f'></AccountTreeIcon> | AccountAbility</h1>
-            <h2>Login</h2>
+            <h2>Admin Login</h2>
         <form className = "login-form" onSubmit = {SubmitHandler}>
             <input
             value = {user.email}
