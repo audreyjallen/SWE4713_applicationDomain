@@ -35,6 +35,36 @@ export const AdminMenu = () => {
                     </Link>
                     <Link to ="/GeneralLedger"> <button>Journal</button></Link>
                     <Link to ="/SelectFinancialStatement"><button>Financial Statements</button></Link>
+        div className = "MidButton">
+                    <button>Home</button>
+                    <button>View Users</button>
+                    <button>Email</button>
+                    <button>
+                        Chart of Accounts
+                    </button>
+                    <button>Journal</button>
+                    <div className = "AddManager">
+                    <Tooltip title = "AddManager">
+                    <Link to ="/createManager">
+                    <button>
+                        Add Manager
+                    </button>
+                    </Link>
+                    
+                    </Tooltip>
+                </div>
+
+                <div className = "AddAccountant">
+                    <Tooltip title = "AddAccountant">
+                    <Link to ="/createAccountant">
+                    <button>
+                        Add Accountant
+                    </button>
+                    </Link>
+                    
+                    </Tooltip>
+                </div>
+                </div>
                 </div>
                 <div className = "HelpButton">
                       <HelpModal/>
